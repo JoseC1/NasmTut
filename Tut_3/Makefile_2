@@ -1,0 +1,43 @@
+#This is our make file here is where we put a script to run our file
+#Purpose of a script is to not type the same repeating code over 
+#and over again
+
+#THIS IS WHERE U TELL UR MAKE COMMAND WHERE TO START OR SEQ TO FOLLOW 
+all: asm3.o output
+
+output: asm3.o
+	gcc -m32 asm3.o -o output
+
+#What we are saying is if our object file gets editted or created again
+#then Re compile it and create a new exectuable file 
+
+edit:
+	vim asm3.asm
+
+#This just runs our program
+
+asm3.o: asm3.asm
+	nasm -f elf32 asm3.asm -o asm3.o
+
+#what this is saying is if our asm3.asm file gets editted 
+#Then assemble it and make the executable linkable format 
+#a 32 bit object
+
+#Elf stand for executable and linkable format 
+#elf32 tells our assembler its a 32 file 
+ 
+run:
+	-@ ./output
+
+clean:
+	rm *.o output
+
+
+#GOING TO PUTSOME MACROS ACCESS THEM By typing $(Macroname)
+
+RUN=./output
+
+
+#this cleans us of all object files and of our exectuable file 
+
+
